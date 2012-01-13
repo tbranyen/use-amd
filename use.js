@@ -1,4 +1,4 @@
-/* RequireJS Use (Shimming) Plugin v0.1.0
+/* RequireJS Use Plugin v0.1.0
  * Copyright 2012, Tim Branyen (@tbranyen)
  * use.js may be freely distributed under the MIT license.
  */
@@ -16,16 +16,19 @@ define({
   // arguments.
   //
   // require.config({
-  //   "libs/underscore": {
-  //     attach: "_"
-  //   },
-  //
-  //   "libs/backbone": {
-  //     deps: ["use!underscore", "jquery", "order!libs/backbone"],
-  //     attach: function(_, $) {
-  //       return this.Backbone.noConflict();
+  //   use: {
+  //     "libs/underscore": {
+  //       attach: "_"
+  //     },
+  //  
+  //     "libs/backbone": {
+  //       deps: ["use!underscore", "jquery", "order!libs/backbone"],
+  //       attach: function(_, $) {
+  //         return this.Backbone.noConflict();
+  //       }
   //     }
   //   }
+  // });
   //
   load: function(name, req, load, config) {
     var module = config.use && config.use[name];
