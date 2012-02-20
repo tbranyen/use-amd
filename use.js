@@ -13,6 +13,11 @@ define({
   // Invoked by the AMD builder, passed the path to resolve, the require
   // function, done callback, and the configuration options.
   load: function(name, req, load, config) {
+    // Dojo provides access to the config object through the req function.
+    if (!config) {
+      config = require.rawConfig;
+    }
+
     var module = config.use && config.use[name];
 
     // No module to load so return early.
