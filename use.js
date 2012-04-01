@@ -33,6 +33,7 @@ define({
     // Read the current module configuration for any dependencies that are
     // required to run this particular non-AMD module.
     req(module.deps || [], function() {
+      var depArgs = arguments;
       // Require this module
       req([name], function() {
         // Attach property
@@ -45,7 +46,7 @@ define({
 
         // Return the correct attached object
         if (typeof attach === "function") {
-          return load(attach.apply(window, arguments));
+          return load(attach.apply(window, depArgs));
         }
 
         // Use window for now (maybe this?)
