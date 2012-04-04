@@ -67,7 +67,7 @@ define({
     if (typeof attach === "function") {
       normalize.attach = "return " + module.attach.toString() + ";";
     } else {
-      normalize.attach = "return window['" + module.attach + "'];";
+      normalize.attach = "return (typeof " + module.attach + " !== 'undefined') ? " + module.attach + " : void 0";
     }
 
     // Normalize the dependencies to have proper string characters
