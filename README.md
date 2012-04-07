@@ -33,7 +33,7 @@ plugins folder)
 ``` javascript
 require.config({
   paths: {
-    "use": "path/to/use.js"
+    "use": "path/to/use"
   }
 });
 ```
