@@ -1,25 +1,28 @@
-/*global config:true, task:true*/
-config.init({
-  lint: {
-    files: ["grunt.js", "use.js"]
-  },
+module.exports = function(grunt) {
 
-  min: {
-    "dist/use.min.js": "use.js"
-  },
+  grunt.initConfig({
+    lint: {
+      files: ["grunt.js", "use.js"]
+    },
 
-  watch: {
-    files: "<config:lint.files>",
-    tasks: "lint test"
-  },
+    min: {
+      "dist/use.min.js": "use.js"
+    },
 
-  jshint: {
-    globals: {
-      define: true,
-      window: true
+    watch: {
+      files: "<config:lint.files>",
+      tasks: "lint test"
+    },
+
+    jshint: {
+      globals: {
+        define: true,
+        window: true
+      }
     }
-  }
-});
+  });
 
-// Default task.
-task.registerTask("default", "lint min");
+  // Default task.
+  grunt.registerTask("default", "lint min");
+
+};
