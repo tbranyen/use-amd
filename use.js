@@ -62,13 +62,17 @@ define({
     var module = buildMap[moduleName];
     var deps = module.deps;
     var normalize = { attach: null, deps: "" };
-
+	
     // Normalize the attach to window[name] or function() { }
-    if (typeof attach === "function") {
-      normalize.attach = "return " + module.attach.toString() + ";";
+    if (typeof module.attach === "function") {
+      normalize.attach = module.attach.toString();
     } else {
-      normalize.attach = "return typeof " + module.attach +
-        " !== \"undefined\" ? " + module.attach + " : void 0";
+      normalize.attach = [
+        "function() {",
+          "return typeof ", module.attach,
+            " !== \"undefined\" ? ", module.attach, " : void 0;",
+        "};"
+      ].join("");
     }
 
     // Normalize the dependencies to have proper string characters
@@ -79,15 +83,11 @@ define({
     // Write out the actual definition
     write([
       "define('", pluginName, "!", moduleName, "', ",
-        "[", normalize.deps, "],",
-
-        "function() {",
-          normalize.attach,
-        "}",
-
+        "[", normalize.deps, "],", normalize.attach,
       ");\n"
     ].join(""));
   }
 });
 
 })();
+
