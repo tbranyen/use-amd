@@ -71,7 +71,7 @@ define({
         "function() {",
           "return typeof ", module.attach,
             " !== \"undefined\" ? ", module.attach, " : void 0;",
-        "};"
+        "}"
       ].join("");
     }
 
@@ -83,7 +83,7 @@ define({
     // Write out the actual definition
     write([
       "define('", pluginName, "!", moduleName, "', ",
-        "[", normalize.deps, "],", normalize.attach,
+        "[", normalize.deps, "], ", normalize.attach,
       ");\n"
     ].join(""));
   }
