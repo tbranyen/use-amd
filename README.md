@@ -79,10 +79,17 @@ require(["use!backbone"], function(Backbone) {
 
 ## Release History ##
 
+### 0.3.0 ###
+
+* Dojo AMD loader support
+* Node.js (maybe others w/o window object) compatibility
+* Several fixes with how r.js builds out modules
+* Support for wrap=true
+
 ### 0.2.0 ###
 
 * Added `write` method that ensures compatibility in loader environments that
-do not give access to the configuration object
+  do not give access to the configuration object
 * Published to GitHub as a repo
 
 ### 0.1.0 ###
