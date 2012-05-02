@@ -69,8 +69,8 @@ define({
     } else {
       normalize.attach = [
         "function() {",
-          "return typeof ", module.attach,
-            " !== \"undefined\" ? ", module.attach, " : void 0;",
+          "return typeof ", String(module.attach),
+            " !== \"undefined\" ? ", String(module.attach), " : void 0;",
         "}"
       ].join("");
     }
