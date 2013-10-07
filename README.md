@@ -1,5 +1,7 @@
 use.js
 ======
+
+[![Build Status](https://travis-ci.org/tbranyen/use.js.png?branch=master)](https://travis-ci.org/tbranyen/use.js)
   
 Created by Tim Branyen [@tbranyen](http://twitter.com/tbranyen)
 
