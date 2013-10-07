@@ -3,49 +3,49 @@ use.js
   
 Created by Tim Branyen [@tbranyen](http://twitter.com/tbranyen)
 
-Using AMD shouldn't be painful, but unfortunately like many facets of life,
-using incompatible code doesn't work out the way you would expect.  Especially
-when they have dependencies of their own.
+The AMD specification contains a [draft
+proposal](https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins) for loader
+plugins that allow you to take action before a module has actually been loaded.
 
-Use.js has been written to work with RequireJS specifically, but its possible
-that it will work with other AMD loaders/builders as well.
+By default AMD loaders do not know how to load anything that wasn't defined in
+the AMD syntax.  This plugin allows you to map the proper dependencies  and
+attaches the specified global object to the module exports.
 
-I like RequireJS and I like AMD, this plugin addresses the issue that many
-others have tackled in the wrong way.  Before this plugin it was common to
-*directly* modify library source code, create separate "shim" files, or load
-the scripts without regard for their dependencies or associated object.
+This plugin *does not* modify library source code.  It executes scripts as they
+were intended and tested.
 
-This plugin *does not* modify library source code and executes the scripts
-as they were intended and tested.  It simply ensures the proper dependencies
-have loaded and attaches the specified global object to the module definition.
+### Installing: ###
 
-## Download & Include ##
+This plugin has been registered with Bower, install with:
 
-Development is fully commented source, Production is minified and stripped of
-all comments except for license/credits.
+``` bash
+bower install use-amd
+```
 
-* [Development](https://raw.github.com/tbranyen/use.js/master/use.js)
-* [Production](https://raw.github.com/tbranyen/use.js/master/dist/use.min.js)
+Alternatively you can download the `use.js` file and place anywhere in your
+project.
 
-You need to set the path of use to its location (I typically put it in a
-plugins folder)
+### Loading the plugin: ###
 
 ``` javascript
 require.config({
   paths: {
-    "use": "path/to/use"
+    // You can change the plugin name to be whatever you want, maybe shim?
+    "use": "path/to/use-amd/use"
   }
 });
 ```
 
-## Usage ##
+You must not end the path in `.js` unless you are providing a url.
 
-You must define a configuration for each incompatible script you wish to
-include.
+Examples:
 
-### Configuration format ###
+* `vendor/libraries/use`
+* `http://cdn.mysite.com/vendor/libraries/use.js`
 
-The string property used in attach will resolve to `window[stringProp]`
+### Configuring: ###
+
+The string property used in `attach` will resolve to `window[stringProp]`
 Functions are evaluated in the scope of the window and passed all dependencies
 as arguments.
 
@@ -77,22 +77,67 @@ require(["use!backbone"], function(Backbone) {
 });
 ```
 
-## Release History ##
+### Using shim syntax ###
 
-### 0.3.0 ###
+After use.js was released, RequireJS bundled its own implementation and did a
+much better job at the naming and API.  Use.js is now compatible with the
+syntax within RequireJS.
+
+``` javascript
+require.config({
+  paths: {
+    "module/a": "/path/to/module/a",
+    "module/b": "/path/to/module/b",
+    "module/c": "/path/to/module/c",
+
+    // You may want to change the plugin name to shim as well.
+    "shim": "/path/to/use"
+  },
+
+  shim: {
+    "module/a": {
+      deps: ["module/b"],
+      exports: "A"
+    },
+
+    "module/b": ["some/module"],
+
+    "module/c": {
+      init: function() {
+        return this.c;
+      }
+    },
+  }
+});
+
+require(["shim!backbone"], function(Backbone) {
+  console.log(Backbone); // is Backbone!
+});
+```
+
+### Release notes: ###
+
+#### 0.4.0 ####
+
+* Upgraded to use Grunt 0.4.
+* Registered on Bower.
+* Tested with RequireJS, Dojo, and Cujo.
+* RequireJS shim implementation support.
+
+#### 0.3.0 ####
 
 * Dojo AMD loader support
 * Node.js (maybe others w/o window object) compatibility
 * Several fixes with how r.js builds out modules
 * Support for wrap=true
 
-### 0.2.0 ###
+#### 0.2.0 ####
 
 * Added `write` method that ensures compatibility in loader environments that
   do not give access to the configuration object
 * Published to GitHub as a repo
 
-### 0.1.0 ###
+#### 0.1.0 ####
 
 * Initial release, allows non-amd compatible JavaScript to load
 * Gist only
