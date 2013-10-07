@@ -1,4 +1,4 @@
-/* RequireJS Use Plugin v0.4.0
+/* Use AMD Plugin v0.4.0
  * Copyright 2013, Tim Branyen (@tbranyen)
  * use.js may be freely distributed under the MIT license.
  */

@@ -5,10 +5,6 @@ use.js
   
 Created by Tim Branyen [@tbranyen](http://twitter.com/tbranyen)
 
-The AMD specification contains a [draft
-proposal](https://github.com/amdjs/amdjs-api/wiki/Loader-Plugins) for loader
-plugins that allow you to take action before a module has actually been loaded.
-
 By default AMD loaders do not know how to load anything that wasn't defined in
 the AMD syntax.  This plugin allows you to map the proper dependencies  and
 attaches the specified global object to the module exports.
