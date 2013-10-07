@@ -18,11 +18,8 @@ define("use", {
       config = require.rawConfig;
     }
 
-    // By default look for the shim property to parity RequireJS.
-    var module = config.shim && config.shim[name];
-
-    // Use takes priority over shim.
-    module = config.use ? config.use[name] : module;
+    // Configuration is namespaced under use object.
+    var module = config.use && config.use[name];
 
     // No module to load, throw.
     if (!module) {
@@ -36,6 +33,13 @@ define("use", {
       deps: module.deps || [],
       attach: module.attach || module.exports || module.init
     };
+
+    // Determine if shim parity is necessary to handle passed dependency array.
+    // Browsers that don't support Array.isArray do not have my sympathy.
+    if (Array.isArray ? Array.isArray(module) : module.length) {
+      settings.deps = module;
+      settings.attach = undefined;
+    }
 
     // Read the current module configuration for any dependencies that are
     // required to run this particular non-AMD module.

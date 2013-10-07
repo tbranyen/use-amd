@@ -30,7 +30,7 @@ asyncTest("Basic AMD support", 1, function() {
   });
 });
 
-asyncTest("RequireJS shim compatibility", 2, function() {
+asyncTest("RequireJS shim compatibility", 3, function() {
   require({
     use: {
       "fixtures/exports": {
@@ -41,14 +41,18 @@ asyncTest("RequireJS shim compatibility", 2, function() {
         init: function() {
           return this.init;
         }
-      }
+      },
+
+      "fixtures/array_exports": ["fixtures/depends"]
     }
   }, [
     "use!fixtures/exports",
-    "use!fixtures/init"
-  ], function(exports, init) {
+    "use!fixtures/init",
+    "use!fixtures/array_exports"
+  ], function(exports, init, array_exports) {
     ok(exports, "Exports");
     ok(init, "Init");
+    ok(require("fixtures/depends"), "Depends");
 
     start();
   });

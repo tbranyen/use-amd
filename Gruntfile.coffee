@@ -5,9 +5,6 @@ module.exports = ->
 
     connect:
       test: {}
-      server:
-        options:
-          keepalive: true
 
     watch:
       files: ["use.js", "test/**/*", "Gruntfile.coffee"]
@@ -28,4 +25,4 @@ module.exports = ->
   @loadNpmTasks "grunt-contrib-qunit"
   @loadNpmTasks "grunt-clear"
 
-  @registerTask "default", ["jshint", "connect:test", "qunit"]
+  @registerTask "default", ["jshint", "connect", "qunit"]

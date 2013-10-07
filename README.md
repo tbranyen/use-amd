@@ -28,7 +28,6 @@ project.
 ``` javascript
 require.config({
   paths: {
-    // You can change the plugin name to be whatever you want, maybe shim?
     "use": "path/to/use-amd/use"
   }
 });
@@ -49,22 +48,22 @@ as arguments.
 
 ``` javascript
 require.config({
- use: {
-   "underscore": {
-     attach: "_"
-   },
-
-   "backbone": {
-     deps: ["use!underscore", "jquery"],
-     attach: function(_, $) {
-       return Backbone;
-     }
-   }
- }
+  use: {
+    "underscore": {
+      attach: "_"
+    },
+ 
+    "backbone": {
+      deps: ["use!underscore", "jquery"],
+      attach: function(_, $) {
+        return Backbone;
+      }
+    }
+  }
 });
 ```
 
-### Requiring a module ###
+### Requiring a module: ###
 
 To require a module you simply use the `require` function as usual, except
 prefix the script name with `use!` the `!` tells the loader its a plugin.
@@ -75,7 +74,7 @@ require(["use!backbone"], function(Backbone) {
 });
 ```
 
-### Using shim syntax ###
+### Using shim syntax: ###
 
 After use.js was released, RequireJS bundled its own implementation and did a
 much better job at the naming and API.  Use.js is now compatible with the
@@ -98,7 +97,7 @@ require.config({
       exports: "A"
     },
 
-    "module/b": ["some/module"],
+    "module/b": ["module/c"],
 
     "module/c": {
       init: function() {
@@ -112,6 +111,93 @@ require(["shim!backbone"], function(Backbone) {
   console.log(Backbone); // is Backbone!
 });
 ```
+
+### Using with Dojo: ###
+
+Ensure Dojo's loader is in `async` mode:
+
+``` html
+<script data-dojo-config="async:1" src="dojo/dojo.js"></script>
+```
+
+Set up your configuration:
+
+``` javascript
+require({
+  paths: {
+    "module/a": "/path/to/module/a",
+    "module/b": "/path/to/module/b",
+    
+    "use": "path/to/use"
+  },
+
+  use: {
+    "module/a": {
+      deps: ["module/b"],
+      attach: "A"
+    }
+  }
+});
+```
+
+And finally Require in your shimmed module:
+
+``` javascript
+require(["use!module/a"], function(A) {
+  console.log(A); // is A!
+});
+```
+
+### Using with Curl: ###
+
+Set up your configuration, Curl support relies on the built-in `js!` plugin,
+so ensure the `pluginPath` is set to Curl's internal cache:
+
+``` javascript
+curl.config({
+  pluginPath: "curl/src/curl/plugin/",
+
+  paths: {
+    "module/a": "/path/to/module/a",
+    "module/b": "/path/to/module/b",
+    
+    "use": "path/to/use"
+  },
+
+  use: {
+    "module/a": {
+      deps: ["module/b"],
+      attach: "A"
+    }
+  }
+});
+```
+
+And finally Curl in your shimmed module:
+
+``` javascript
+curl(["use!module/a"], function(A) {
+  console.log(A); // is A!
+});
+```
+
+### Running tests ###
+
+You will need Node.js and Grunt installed to run tests.
+
+Clone this project, open the directory in a terminal, and execute the following
+commands:
+
+``` bash
+# Install dependencies.
+npm i -q
+
+# Run the tests.
+grunt
+```
+
+You can also run an http-server in the root and hit the tests directly.  Since
+XHR is used, tests must be run from a server.
 
 ### Release notes: ###
 
