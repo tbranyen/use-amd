@@ -7,7 +7,7 @@
 // Cache used to map configuration options between load and write.
 var buildMap = {};
 
-define("use", {
+define({
   version: "0.4.0",
 
   // Invoked by the AMD builder, passed the path to resolve, the require
