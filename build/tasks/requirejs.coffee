@@ -12,3 +12,7 @@ module.exports = ->
 
         paths:
           use: "../../use"
+
+        use:
+          "fixtures/basic":
+            attach: "basic"
