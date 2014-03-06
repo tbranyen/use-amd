@@ -1,0 +1,1 @@
+require(["use!fixtures/basic"]);
