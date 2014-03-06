@@ -5,7 +5,7 @@ module.exports = ->
     test:
       options:
         urls: [
-          "http://localhost:8000/test/requirejs.html"
-          "http://localhost:8000/test/dojo.html"
-          "http://localhost:8000/test/curl.html"
+          "http://localhost:7357/test/requirejs.html"
+          "http://localhost:7357/test/dojo.html"
+          "http://localhost:7357/test/curl.html"
         ]

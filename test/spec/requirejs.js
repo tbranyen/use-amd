@@ -3,16 +3,13 @@
  * Ensures that use.js loads and functions in RequireJS.
  *
  */
-QUnit.module("requirejs", {
-  setup: function() {
-    require.config({
-      baseUrl: "../",
+QUnit.module("requirejs");
 
-      paths: {
-        use: "use",
-        fixtures: "test/fixtures"
-      }
-    });
+require.config({
+  baseUrl: "/test",
+
+  paths: {
+    use: "../use"
   }
 });
 
@@ -55,5 +52,17 @@ asyncTest("RequireJS shim compatibility", 3, function() {
     ok(require("fixtures/depends"), "Depends");
 
     start();
+  });
+});
+
+asyncTest("plugin works with r.js optimizer", 1, function() {
+  // Load the module containing the build.
+  require(["build_tools/_output/r"], function() {
+    // Request the basic value.
+    require(["use!fixtures/basic"], function(value) {
+      equal(value, true);
+
+      start();
+    });
   });
 });
