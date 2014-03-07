@@ -3,8 +3,7 @@ var profile = {
   action: "release",
 
   packages: [
-    { name: "dojo-test", location: "." },
-    { name: "use", location: ".", main: "use.js" }
+    { name: "dojo-test", location: "." }
   ],
 
   layers: {
