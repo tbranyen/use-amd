@@ -28,7 +28,7 @@ var profile = {
 		// All JavaScript in this package should be AMD modules if you are starting a new project. If you are copying
 		// any legacy scripts from an existing project, those legacy scripts should not be given the `amd` tag.
 		amd: function (filename, mid) {
-			return !this.copyOnly(filename, mid) && /\.js$/.test(filename);
+			return /\.js$/.test(filename);
 		},
 
 		// Files that should not be copied when the `mini` build flag is set to true.

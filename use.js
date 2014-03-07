@@ -13,6 +13,8 @@ define({
   start: function(mid, referenceModule, bc) {
     var usePlugin = bc.amdResources["use"];
     console.log(usePlugin);
+
+    return ["./fixtures/basic"];
   },
 
   // Invoked by the AMD builder, passed the path to resolve, the require

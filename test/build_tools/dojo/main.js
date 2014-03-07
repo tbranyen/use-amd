@@ -1,1 +1,1 @@
-require(["use!fixtures/basic"]);
+require(["use!./fixtures/basic.js"]);
