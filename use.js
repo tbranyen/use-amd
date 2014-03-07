@@ -11,8 +11,8 @@ define({
   version: "0.4.0",
 
   start: function(mid, referenceModule, bc) {
+    console.log("HIT");
     var usePlugin = bc.amdResources["use"];
-    console.log(usePlugin);
 
     return ["./fixtures/basic"];
   },

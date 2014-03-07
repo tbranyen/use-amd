@@ -6,6 +6,6 @@ module.exports = ->
       options:
         load: "build",
         dojo: "#{__dirname}/../../bower_components/dojo/dojo.js",
-        require: "#{__dirname}/../../test/build_tools/dojo/main.js",
+        require: "#{__dirname}/../../test/build_tools/dojo/config.js",
         profile: "#{__dirname}/../../test/build_tools/dojo/dojo.profile.js",
         releaseDir: "#{__dirname}/../../test/build_tools/_output"

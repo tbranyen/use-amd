@@ -10,10 +10,6 @@ var profile = {
     { name: "dojo-test", location: "." }
   ],
 
-  paths: {
-    "use": "../use"
-  },
-
   layers: {
     "dojo-test/main": {
       include: [
