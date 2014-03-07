@@ -1,7 +1,7 @@
-use.js
-======
+use-amd
+=======
 
-[![Build Status](https://travis-ci.org/tbranyen/use.js.png?branch=master)](https://travis-ci.org/tbranyen/use.js)
+[![Build Status](https://travis-ci.org/tbranyen/use-amd.png?branch=master)](https://travis-ci.org/tbranyen/use-amd)
   
 Created by Tim Branyen [@tbranyen](http://twitter.com/tbranyen)
 
