@@ -10,6 +10,11 @@ var buildMap = {};
 define({
   version: "0.4.0",
 
+  start: function(mid, referenceModule, bc) {
+    var usePlugin = bc.amdResources["use"];
+    console.log(usePlugin);
+  },
+
   // Invoked by the AMD builder, passed the path to resolve, the require
   // function, done callback, and the configuration options.
   load: function(name, req, load, config) {

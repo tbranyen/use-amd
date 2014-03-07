@@ -1,0 +1,6 @@
+{
+  "name": "dojo-test",
+  "version": "0.1.0",
+  "description": "Test building.",
+  "dojoBuild": "package.js"
+}
