@@ -1,16 +1,13 @@
 var profile = {
-	basePath: "./",
-	action: "release",
-
-  plugins: {
-    "use": "use.js"
-  },
+  basePath: "./",
+  action: "release",
 
   packages: [
-    { name: "dojo-test", location: "." }
+    { name: "dojo-test", location: "." },
+    { name: "use", location: ".", main: "use.js" }
   ],
 
-	layers: {
-		"dojo-test/main": {}
-	}
+  layers: {
+    "dojo-test/main": {}
+  }
 };
